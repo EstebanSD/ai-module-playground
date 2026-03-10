@@ -1,8 +1,8 @@
-import type { AITextState } from '@/types/ai-request';
+import type { AITextState, AIStreamState } from '@/types/ai-request';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
 
 type Props = {
-  state: AITextState;
+  state: AITextState | AIStreamState;
 };
 
 export function AIErrorCard({ state }: Props) {

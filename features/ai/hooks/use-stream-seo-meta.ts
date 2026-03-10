@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import type { AIStreamChunk } from '@/types/ai-request';
 import { buildSSEUrl } from '@/lib/build-see-url';
 
-export function useStreamSummary() {
+export function useStreamSeoMeta() {
   const sourceRef = useRef<EventSource | null>(null);
   const completedRef = useRef(false);
 
@@ -15,7 +15,7 @@ export function useStreamSummary() {
     onError: (error: Error) => void,
   ) {
     completedRef.current = false;
-    const url = buildSSEUrl('/ai/summary/stream', {
+    const url = buildSSEUrl('/ai/seo-meta/stream', {
       content,
     });
 

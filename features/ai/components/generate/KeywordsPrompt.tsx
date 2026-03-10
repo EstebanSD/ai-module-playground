@@ -11,6 +11,7 @@ import { FormInput, FormTextArea } from '@/components/common';
 import { useGenerateKeywords } from '../../hooks/use-generate-keywords';
 import { AIResultCard } from '../AIResultCard';
 import { AIErrorCard } from '../AIErrorCard';
+import { PromptDescription } from '../PromptDescription';
 
 const formSchema = z.object({
   text: z.string().min(1, 'This field is required.'),
@@ -60,13 +61,10 @@ export function KeywordsPrompt() {
 
   return (
     <div className="p-4 grid grid-cols-1 gap-4">
-      <blockquote className="border-l-4 pl-4 text-sm text-muted-foreground">
-        Extracts the most relevant keywords from a piece of content. The prompt expects plain text
-        and returns a comma-separated list of keywords optimized for SEO usage.
-      </blockquote>
-      <p className="text-xs text-muted-foreground">
-        Input: text and keyword limit. Output: comma-separated keyword list.
-      </p>
+      <PromptDescription
+        desc="Extracts the most relevant keywords from the text."
+        inout="Input: text and keyword limit. Output: comma-separated keyword list."
+      />
 
       <Card>
         <CardContent className="space-y-4 pt-6">
@@ -76,7 +74,7 @@ export function KeywordsPrompt() {
               <FormTextArea name="text" label="Text" rows={4} maxLength={2000} />
 
               <div className="mt-2 flex justify-end">
-                <Button type="submit" disabled={loading || !form.formState.isValid}>
+                <Button type="submit" disabled={loading}>
                   {loading ? 'Generating...' : 'Generate'}
                 </Button>
               </div>

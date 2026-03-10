@@ -11,6 +11,7 @@ import { FormTextArea } from '@/components/common';
 import { useGenerateSeoMeta } from '../../hooks/use-generate-seo-meta';
 import { AIResultCard } from '../AIResultCard';
 import { AIErrorCard } from '../AIErrorCard';
+import { PromptDescription } from '../PromptDescription';
 
 const formSchema = z.object({
   text: z.string().min(1, 'This field is required.'),
@@ -53,12 +54,10 @@ export function SeoMetaPrompt() {
 
   return (
     <div className="p-4 grid grid-cols-1 gap-4">
-      <blockquote className="border-l-4 pl-4 text-sm text-muted-foreground">
-        Generates SEO metadata from the text: title, description, and keywords.
-      </blockquote>
-      <p className="text-xs text-muted-foreground">
-        Output includes a title (≤60 chars), description (≤160 chars), and five SEO keywords.
-      </p>
+      <PromptDescription
+        desc="Generates SEO metadata from the text: title, description, and keywords."
+        inout="Output includes a title (≤60 chars), description (≤160 chars), and five SEO keywords."
+      />
 
       <Card>
         <CardContent className="space-y-4 pt-6">

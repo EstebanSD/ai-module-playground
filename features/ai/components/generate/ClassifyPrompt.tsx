@@ -11,6 +11,7 @@ import { FormInput, FormTextArea } from '@/components/common';
 import { useGenerateClassify } from '../../hooks/use-generate-classify';
 import { AIErrorCard } from '../AIErrorCard';
 import { AIResultCard } from '../AIResultCard';
+import { PromptDescription } from '../PromptDescription';
 
 const formSchema = z.object({
   text: z.string().min(1, 'This field is required.'),
@@ -63,12 +64,10 @@ export function ClassifyPrompt() {
 
   return (
     <div className="p-4 grid grid-cols-1 gap-4">
-      <blockquote className="border-l-4 pl-4 text-sm text-muted-foreground">
-        Classifies the text into one of the provided categories.
-      </blockquote>
-      <p className="text-xs text-muted-foreground">
-        Input: text and a list of categories. Output: the most relevant category.
-      </p>
+      <PromptDescription
+        desc="Classifies the text into one of the provided categories."
+        inout="Input: text and a list of categories. Output: the most relevant category."
+      />
 
       <Card>
         <CardContent className="space-y-4 pt-6">
@@ -79,7 +78,7 @@ export function ClassifyPrompt() {
               <FormTextArea name="text" label="Text" rows={4} maxLength={2000} />
 
               <div className="flex justify-end">
-                <Button type="submit" disabled={loading || !form.formState.isValid}>
+                <Button type="submit" disabled={loading}>
                   {loading ? 'Generating...' : 'Generate'}
                 </Button>
               </div>

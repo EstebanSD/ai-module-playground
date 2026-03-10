@@ -11,6 +11,7 @@ import type { AITextState } from '@/types/ai-request';
 import { useGenerateSummary } from '../../hooks/use-generate-summary';
 import { AIResultCard } from '../AIResultCard';
 import { AIErrorCard } from '../AIErrorCard';
+import { PromptDescription } from '../PromptDescription';
 
 const formSchema = z.object({
   text: z.string().min(1, 'This field is required.'),
@@ -53,12 +54,10 @@ export function SummaryPrompt() {
 
   return (
     <div className="p-4 grid grid-cols-1 gap-4">
-      <blockquote className="border-l-4 pl-4 text-sm text-muted-foreground">
-        Generates a short summary of the provided text in 5 bullet points.
-      </blockquote>
-      <p className="text-xs text-muted-foreground">
-        Input: plain text. Output: five concise bullet points summarizing the main ideas.
-      </p>
+      <PromptDescription
+        desc="Generates a short summary of the provided text in 5 bullet points."
+        inout="Input: plain text. Output: five concise bullet points summarizing the main ideas."
+      />
 
       <Card>
         <CardContent className="space-y-4 pt-6">

@@ -4,19 +4,23 @@ import { useRef } from 'react';
 import type { AIStreamChunk } from '@/types/ai-request';
 import { buildSSEUrl } from '@/lib/build-see-url';
 
-export function useStreamSummary() {
+type Values = {
+  content: string;
+  categories: string;
+};
+export function useStreamClassify() {
   const sourceRef = useRef<EventSource | null>(null);
   const completedRef = useRef(false);
 
   function stream(
-    content: string,
+    values: Values,
     onChunk: (delta: string) => void,
     onDone: () => void,
     onError: (error: Error) => void,
   ) {
     completedRef.current = false;
-    const url = buildSSEUrl('/ai/summary/stream', {
-      content,
+    const url = buildSSEUrl('/ai/classify/stream', {
+      ...values,
     });
 
     const source = new EventSource(url);
