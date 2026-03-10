@@ -1,6 +1,3 @@
-export {
-  ParentTabs,
-  ParentTabsContent,
-  ParentTabsList,
-  ParentTabsTrigger,
-} from './ParentTabs/components';
+export { FormInput } from './FormInput';
+export { FormInputLabel } from './FormInputLabel';
+export { FormTextArea } from './FormTextArea';

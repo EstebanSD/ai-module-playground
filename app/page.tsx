@@ -1,11 +1,6 @@
-import {
-  ParentTabs,
-  ParentTabsContent,
-  ParentTabsList,
-  ParentTabsTrigger,
-} from '@/components/common';
-import { GenerateContent } from '@/features/ai/components/GenerateContent';
-import { StreamContent } from '@/features/ai/components/StreamContent';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import { GenerateContent } from '@/features/ai/components/generate/GenerateContent';
+import { StreamContent } from '@/features/ai/components/stream/StreamContent';
 
 const VALUES = {
   stream: 'stream',
@@ -13,27 +8,21 @@ const VALUES = {
 };
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
-      <main className="min-h-screen w-full max-w-5xl px-16 bg-white">
-        <ParentTabs className="w-100" defaultValue={VALUES.stream}>
-          <ParentTabsList>
-            <ParentTabsTrigger value={VALUES.stream}>
-              <span>Stream</span>
-            </ParentTabsTrigger>
+    <div className="flex min-h-screen items-center justify-center bg-zinc-300 font-sans">
+      <main className="min-h-screen w-full max-w-3xl py-4 px-4 md:px-10 lg:px-16 bg-gray-50">
+        <Tabs defaultValue={VALUES.stream}>
+          <TabsList className="bg-gray-300">
+            <TabsTrigger value={VALUES.stream}>Stream</TabsTrigger>
+            <TabsTrigger value={VALUES.generate}>Generate</TabsTrigger>
+          </TabsList>
 
-            <ParentTabsTrigger value={VALUES.generate}>
-              <span>Generate</span>
-            </ParentTabsTrigger>
-          </ParentTabsList>
-
-          <ParentTabsContent value={VALUES.stream}>
+          <TabsContent value={VALUES.stream}>
             <StreamContent />
-          </ParentTabsContent>
-
-          <ParentTabsContent value={VALUES.generate}>
+          </TabsContent>
+          <TabsContent value={VALUES.generate}>
             <GenerateContent />
-          </ParentTabsContent>
-        </ParentTabs>
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
