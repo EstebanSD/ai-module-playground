@@ -24,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <header className="p-4 flex items-center justify-center">
+          <h1 className="text-3xl">AI Module Playground</h1>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }

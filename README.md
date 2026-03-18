@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Module Playground
 
-## Getting Started
+A small playground application used to experiment with AI-powered
+endpoints such as summarization, classification, keyword extraction, and
+SEO metadata generation.
 
-First, run the development server:
+The project focuses on clean architecture, modular backend design, and
+modern frontend patterns for working with LLM APIs and streaming
+responses.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This repository exists primarily to validate backend AI capabilities and prompt behavior.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Overview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is a lightweight playground used to test and experiment with the AI module implemented in the backend.
 
-## Learn More
+It provides a simple interface to run prompts, inspect responses, and validate streaming behavior from AI endpoints such as summarization, classification, keyword extraction, and SEO metadata generation.
 
-To learn more about Next.js, take a look at the following resources:
+The application is intended as a development tool rather than a production product.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features
 
-## Deploy on Vercel
+### Text Generation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Text summarization
+- Text classification
+- Keyword extraction
+- SEO metadata generation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Streaming Generation
+
+Some endpoints support **streaming responses** using Server-Sent Events (SSE).  
+Instead of returning the full response at once, the model output is emitted incrementally as it is generated.
+
+This allows the UI to display tokens progressively, improving perceived responsiveness and making it easier to inspect the generation process.
+
+### Metrics Display
+
+Each generation request returns basic metrics:
+
+- Provider
+- Model
+- Input tokens
+- Output tokens
+- Total tokens
+
+---
+
+## Tech Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- React Hook Form
+- Zod validation
+- shadcn/ui components
+
+---
+
+## Example Endpoints
+
+### Standard Generation
+
+POST /ai/summary
+POST /ai/classify
+POST /ai/keywords
+POST /ai/seo-meta
+
+### Streaming Generation
+
+GET /ai/summary/stream
+GET /ai/classify/stream
+GET /ai/keywords/stream
+GET /ai/seo-meta/stream
+
+Streaming responses use Server-Sent Events (SSE).
+
+Example event:
+
+event: delta
+data: { "delta": "Hello" }
+
+event: done
+data: { "done": true }
+
+---
+
+## Purpose of the Playground
+
+This project exists to:
+
+- test AI prompts
+- experiment with streaming responses
+- prototype new AI features
+- evaluate prompt quality
+- inspect model metrics
+
+It is intended as a development sandbox for AI integrations.
+
+---
+
+## Possible Future Improvements
+
+- Chat interface
+- Streaming UI optimizations
+- Token cost estimation
+- Multiple provider support
+- Prompt versioning
+- Observability and tracing
+
+---
+
+## License
+
+[MIT](LICENSE)
